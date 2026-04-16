@@ -28,9 +28,10 @@ const styles = StyleSheet.create({
     inputBar: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 5,
-        paddingVertical: 3,
-        backgroundColor: '#f9f9f9' // Optional: adds visibility
+        paddingHorizontal: 120,
+        paddingVertical: 0,
+        paddingTop:20 
+        
     },
     textBox: {
         borderRadius: 5,
@@ -48,6 +49,6 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         paddingRight: 15,
         borderRadius: 5,
-        backgroundColor: '#66db30'
+        backgroundColor: '#d86bb4'
     },
 });

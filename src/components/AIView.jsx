@@ -36,12 +36,17 @@ export default function(){
     scrollToBottom();
   }, [messages]);
 
-  const sendMessage = () => {
-    if (inputBarText.trim().length === 0) return;
+  const sendMessage = (overrideText = null) => {
+    const userText = overrideText || inputBarText;
+if (userText.trim().length === 0) return;
 
     // Correct way to update state: create a NEW array
-    let newMessages = [{ direction: 'right', text: inputBarText }];
-    const aResponse = handleInput(inputBarText);
+    let newMessages = [{ 
+  direction: 'right', 
+  text: overrideText ? inputBarText : userText 
+}];
+
+const aResponse = handleInput(userText);
     for(const message of aResponse){
       newMessages.push({direction: "left", text: message});
     }
@@ -85,12 +90,10 @@ const styles = StyleSheet.create({
 
   //ChatView
 
-  outer: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    backgroundColor: 'white'
-  },
+ outer: {
+  flex: 1,
+  backgroundColor: 'white'
+},
 
   messages: {
     flex: 1

@@ -1,4 +1,4 @@
-import { StyleSheet, View, ScrollView, KeyboardAvoidingView, Keyboard, Platform } from 'react-native';
+import { StyleSheet, View, ScrollView, KeyboardAvoidingView, Keyboard, Platform,  } from 'react-native';
 import MessageBubble from './MessageBubble';
 import InputBar from './InputBar';
 
@@ -7,10 +7,14 @@ export default function({scrollToBottom, scrollViewRef, sendMessage, styles, mes
     return(
         <>
         <ScrollView 
-          ref={scrollViewRef} 
-          style={styles.messages}
-          onContentSizeChange={() => scrollToBottom()} // Auto-scrolls when new content arrives
-        >
+  ref={scrollViewRef} 
+  style={styles.messages}
+  contentContainerStyle={{
+    flexGrow: 1,
+    justifyContent: messages.length === 0 ? 'center' : 'flex-start'
+  }}
+  onContentSizeChange={() => scrollToBottom()}
+>
           {messages.map((msg, index) => (
             <MessageBubble 
               key={index} 
@@ -29,3 +33,10 @@ export default function({scrollToBottom, scrollViewRef, sendMessage, styles, mes
     </>
     );
 }
+const localStyles = StyleSheet.create({
+  messages: {
+    flex: 1,
+    paddingHorizontal: 16, // left & right padding
+    paddingTop: 200,
+  }
+});
